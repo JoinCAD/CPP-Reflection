@@ -129,6 +129,9 @@ namespace ursine
             template<typename T>
             T &GetValue(void) const;
 
+            template<typename T>
+            T* GetPointer(void) const;
+
             bool IsValid(void) const;
             bool IsConst(void) const;
             bool IsArray(void) const;

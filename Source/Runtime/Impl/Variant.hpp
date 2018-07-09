@@ -139,5 +139,13 @@ namespace ursine
         {
             return *static_cast<T*>( getPtr( ) );
         }
+
+        ///////////////////////////////////////////////////////////////////////
+
+        template<typename T>
+        T* Variant::GetPointer(void) const
+        {
+            return static_cast<T*>( getPtr( ) );
+        }
     }
 }

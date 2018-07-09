@@ -227,5 +227,6 @@ TemplateData Class::CompileTemplate(const ReflectionParser *context) const
 
 bool Class::isAccessible(void) const
 {
-    return m_enabled || m_metaData.GetFlag( native_property::Register );
+    //make all classes accessible
+    return true;
 }

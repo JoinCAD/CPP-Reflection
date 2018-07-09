@@ -56,8 +56,17 @@ bool Method::isAccessible(void) const
     if (m_parent->GetMetaData( ).GetFlag( native_property::WhiteListMethods ))
         return m_metaData.GetFlag( native_property::Enable );
 
+
+    //remove operators from meta data, otherwise it can cause compile errors
+    std::string prefix = "operator";    
+    bool isOperator = strncmp(m_name.c_str(), prefix.c_str(), prefix.size()) == 0;
+
+    //next condition is optional:
+    //parse only methods that don't take arguments
+    bool takesArguments = m_signature.size() > 0;
+
     // must not be explicitly disabled
-    return !m_metaData.GetFlag( native_property::Disable );
+    return !m_metaData.GetFlag(native_property::Disable) && !takesArguments && !isOperator;
 }
 
 std::string Method::getQualifiedSignature(void) const

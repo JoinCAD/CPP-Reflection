@@ -57,9 +57,12 @@ namespace ursine
                 "Non-const method invoked on const object." 
             );
 
-            UAssert( instance.GetType( ) == m_classType, 
-                "Incompatible method invoked with instance." 
-            );
+            //disable this assert, because we invoke the method on pointer level and typeof(T*) != typeof(T)
+            //
+            //
+            //UAssert( instance.GetType( ) == m_classType, 
+            //    "Incompatible method invoked with instance." 
+            //);
 
         #endif
 
