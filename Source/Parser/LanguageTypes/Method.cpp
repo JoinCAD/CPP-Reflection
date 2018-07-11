@@ -23,7 +23,8 @@ Method::Method(
     , m_parent( parent )
     , m_name( cursor.GetSpelling( ) )
 {
-    
+	//if return type is a typeDef, which definition is inside class scope, we have to add a class name before typeDef name
+	fixReturnType();
 }
 
 bool Method::ShouldCompile(void) const
@@ -80,4 +81,20 @@ std::string Method::getQualifiedSignature(void) const
         m_parent->m_qualifiedName % 
         argsList % constNess
     ).str( );
+}
+
+void Method::fixReturnType()
+{
+	if (m_parent->m_typeDefs.size() <= 0)
+		return;
+
+	for (auto typeDef : m_parent->m_typeDefs)
+	{
+		auto index = m_returnType.find(*typeDef, 0);
+		if (index != std::string::npos)
+		{
+			std::string parentName = m_parent->m_displayName + "::";
+			m_returnType.insert(index, parentName);
+		}
+	}
 }

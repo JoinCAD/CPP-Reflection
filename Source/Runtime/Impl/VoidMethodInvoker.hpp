@@ -46,7 +46,7 @@ namespace ursine
             {
                 auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)( );
+                ((*instance).*m_method)( );
             }
 
             template<typename X, typename A1>

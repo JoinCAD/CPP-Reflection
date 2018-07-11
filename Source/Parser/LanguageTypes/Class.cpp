@@ -98,6 +98,10 @@ Class::Class(const Cursor &cursor, const Namespace &currentNamespace)
                 );
             }
             break;
+		//typeDefs defined in class
+		case CXCursor_TypedefDecl:
+			m_typeDefs.emplace_back(new std::string(child.GetDisplayName()));
+			break;		
         default:
             break;
         }

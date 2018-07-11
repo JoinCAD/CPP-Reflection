@@ -48,7 +48,7 @@ private:
     using SharedPtrVector = std::vector<std::shared_ptr<T>>;
 
     SharedPtrVector<BaseClass> m_baseClasses;
-
+	SharedPtrVector<std::string> m_typeDefs;
     SharedPtrVector<Constructor> m_constructors;
 
     SharedPtrVector<Field> m_fields;

@@ -40,4 +40,5 @@ private:
     bool isAccessible(void) const;
 
     std::string getQualifiedSignature(void) const;
+	void fixReturnType();
 };
