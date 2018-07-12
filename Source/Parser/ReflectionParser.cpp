@@ -360,6 +360,15 @@ void ReflectionParser::buildClasses(
             (kind == CXCursor_ClassDecl || kind == CXCursor_StructDecl)
         )
         {
+            //skip structs that represent teigha enums
+			if (kind == CXCursor_StructDecl)
+			{
+				std::string prefix = "IsEnum";
+				bool isEnum = strncmp(child.GetDisplayName().c_str(), prefix.c_str(), prefix.size()) == 0;
+				if (isEnum)
+					continue;
+			}
+
             auto klass = std::make_shared<Class>( child, currentNamespace );
 
             TRY_ADD_LANGUAGE_TYPE( klass, classes );
