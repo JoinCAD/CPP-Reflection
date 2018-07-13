@@ -11,7 +11,10 @@
 
 class Class;
 
+#if defined TEIGHA_API_SETTINGS
 typedef std::unordered_map<std::string, std::string> string_map;
+#endif
+
 class Method 
     : public LanguageType
     , public Invokable
@@ -41,6 +44,9 @@ private:
     bool isAccessible(void) const;
 
     std::string getQualifiedSignature(void) const;
+
+#if defined TEIGHA_API_SETTINGS
 	static string_map undefined_teigha_types;
 	void fixReturnType(Cursor);
+#endif
 };

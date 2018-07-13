@@ -360,6 +360,7 @@ void ReflectionParser::buildClasses(
             (kind == CXCursor_ClassDecl || kind == CXCursor_StructDecl)
         )
         {
+#if defined TEIGHA_API_SETTINGS
             //skip structs that represent teigha enums
 			if (kind == CXCursor_StructDecl)
 			{
@@ -368,6 +369,7 @@ void ReflectionParser::buildClasses(
 				if (isEnum)
 					continue;
 			}
+#endif
 
             auto klass = std::make_shared<Class>( child, currentNamespace );
 

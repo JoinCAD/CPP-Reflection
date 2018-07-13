@@ -70,7 +70,8 @@ set(Boost_NO_SYSTEM_PATHS ON)
 set(Boost_ALL_NO_LIB ON)
 
 # disable auto-linking
-add_definitions(-DBOOST_ALL_NO_LIB)
+add_definitions(-DBOOST_ALL_NO_LIB 
+-DTEIGHA_API_SETTINGS)
 
 find_package(Boost 1.59.0 REQUIRED 
     COMPONENTS 

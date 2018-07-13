@@ -98,10 +98,12 @@ Class::Class(const Cursor &cursor, const Namespace &currentNamespace)
                 );
             }
             break;
+#if defined TEIGHA_API_SETTINGS
 		//typeDefs defined in class
 		case CXCursor_TypedefDecl:
 			m_typeDefs.emplace_back(new std::string(child.GetDisplayName()));
 			break;		
+#endif
         default:
             break;
         }
@@ -231,6 +233,10 @@ TemplateData Class::CompileTemplate(const ReflectionParser *context) const
 
 bool Class::isAccessible(void) const
 {
+#if defined TEIGHA_API_SETTINGS
     //make all classes accessible
     return true;
+#else
+	return m_enabled || m_metaData.GetFlag(native_property::Register);
+#endif
 }

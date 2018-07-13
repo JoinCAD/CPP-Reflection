@@ -12,7 +12,10 @@
 #include <boost/format.hpp>
 #include <boost/algorithm/string/join.hpp>
 
+#if defined TEIGHA_API_SETTINGS
 string_map Method::undefined_teigha_types({ { "OdBmPartitionId","OdUInt64" } });
+#endif
+
 Method::Method(
     const Cursor &cursor, 
     const Namespace &currentNamespace, 
@@ -24,7 +27,9 @@ Method::Method(
     , m_parent( parent )
     , m_name( cursor.GetSpelling( ) )
 {
+#if defined TEIGHA_API_SETTINGS
 	fixReturnType(cursor);
+#endif
 }
 
 bool Method::ShouldCompile(void) const
@@ -57,7 +62,7 @@ bool Method::isAccessible(void) const
     if (m_parent->GetMetaData( ).GetFlag( native_property::WhiteListMethods ))
         return m_metaData.GetFlag( native_property::Enable );
 
-
+#if defined TEIGHA_API_SETTINGS
     //remove operators from meta data, otherwise it can cause compile errors
     std::string prefix = "operator";    
     bool isOperator = strncmp(m_name.c_str(), prefix.c_str(), prefix.size()) == 0;
@@ -68,6 +73,9 @@ bool Method::isAccessible(void) const
 
     // must not be explicitly disabled
     return !m_metaData.GetFlag(native_property::Disable) && !takesArguments && !isOperator;
+#else
+	return !m_metaData.GetFlag(native_property::Disable);
+#endif
 }
 
 std::string Method::getQualifiedSignature(void) const
@@ -83,6 +91,7 @@ std::string Method::getQualifiedSignature(void) const
     ).str( );
 }
 
+#if defined TEIGHA_API_SETTINGS
 void Method::fixReturnType(Cursor cursor)
 {
 	//check if return type has declaration
@@ -119,3 +128,4 @@ void Method::fixReturnType(Cursor cursor)
 		}
 	}
 }
+#endif

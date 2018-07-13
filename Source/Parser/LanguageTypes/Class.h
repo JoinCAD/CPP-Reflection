@@ -48,7 +48,6 @@ private:
     using SharedPtrVector = std::vector<std::shared_ptr<T>>;
 
     SharedPtrVector<BaseClass> m_baseClasses;
-	SharedPtrVector<std::string> m_typeDefs;
     SharedPtrVector<Constructor> m_constructors;
 
     SharedPtrVector<Field> m_fields;
@@ -58,4 +57,8 @@ private:
     SharedPtrVector<Function> m_staticMethods;
 
     bool isAccessible(void) const;
+
+#if defined TEIGHA_API_SETTINGS
+	SharedPtrVector<std::string> m_typeDefs;
+#endif
 };
