@@ -11,6 +11,7 @@
 
 class Class;
 
+typedef std::unordered_map<std::string, std::string> string_map;
 class Method 
     : public LanguageType
     , public Invokable
@@ -40,5 +41,6 @@ private:
     bool isAccessible(void) const;
 
     std::string getQualifiedSignature(void) const;
-	void fixReturnType();
+	static string_map undefined_teigha_types;
+	void fixReturnType(Cursor);
 };

@@ -12,6 +12,7 @@
 #include <boost/format.hpp>
 #include <boost/algorithm/string/join.hpp>
 
+string_map Method::undefined_teigha_types({ { "OdBmPartitionId","OdUInt64" } });
 Method::Method(
     const Cursor &cursor, 
     const Namespace &currentNamespace, 
@@ -23,8 +24,7 @@ Method::Method(
     , m_parent( parent )
     , m_name( cursor.GetSpelling( ) )
 {
-	//if return type is a typeDef, which definition is inside class scope, we have to add a class name before typeDef name
-	fixReturnType();
+	fixReturnType(cursor);
 }
 
 bool Method::ShouldCompile(void) const
@@ -83,11 +83,32 @@ std::string Method::getQualifiedSignature(void) const
     ).str( );
 }
 
-void Method::fixReturnType()
+void Method::fixReturnType(Cursor cursor)
 {
+	//check if return type has declaration
+	auto item = undefined_teigha_types.find(m_returnType);
+	if (item != undefined_teigha_types.end())
+	{
+		//replace with analogous type.
+		m_returnType = item->second;
+		return;
+	}
+
+	//check if return type is smart pointer
+	auto returnType = cursor.GetReturnType();
+	std::string prefix = "OdSmartPtr";
+	bool isSmartPtr = strncmp(returnType.GetCanonicalType().GetDisplayName().c_str(), prefix.c_str(), prefix.size()) == 0;
+	if (isSmartPtr)
+	{
+		//return base type
+		m_returnType = "OdBaseObjectPtr";
+		return;
+	}
+
 	if (m_parent->m_typeDefs.size() <= 0)
 		return;
-
+	
+	//if return type is a typeDef, which definition is inside class scope, we have to add a class name before typeDef name
 	for (auto typeDef : m_parent->m_typeDefs)
 	{
 		auto index = m_returnType.find(*typeDef, 0);
