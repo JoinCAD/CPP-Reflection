@@ -8,10 +8,20 @@
 #pragma once
 
 //Teigha common headers are required
+#if defined TEIGHA_API_SETTINGS
 
 #include <OdaCommon.h>
 #include <BimCommon.h>
+
+#include <OdTimeStamp.h>
+#include <Database/BmSpecialId.h>
 #include <Base/BmObjectId.h>
+#include <Base/BmCmColor.h>
+#include <Database/BmUnitsFormatter.h>
+#include <Gs/Gs.h>
+
+
+#endif
 
 namespace ursine { namespace meta { class ReflectionDatabase; } }
 

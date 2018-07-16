@@ -61,6 +61,7 @@ set(HEADER_FILES
     TypeInfo.h
     TypeID.h
     Variant.h
+	TeighaVariantContainer.h
     VariantBase.h
     VariantContainer.h
     Impl/Array.hpp
@@ -83,6 +84,7 @@ set(HEADER_FILES
     Impl/TypeInfo.hpp
     Impl/TypeUnpacker.hpp
     Impl/Variant.hpp
+	Impl/TeighaVariantContainer.hpp
     Impl/VariantContainer.hpp
     Impl/VariantContainerStandardTypes.hpp
     Impl/VoidFunctionInvoker.hpp

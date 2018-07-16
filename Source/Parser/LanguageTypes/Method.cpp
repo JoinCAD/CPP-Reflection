@@ -12,9 +12,6 @@
 #include <boost/format.hpp>
 #include <boost/algorithm/string/join.hpp>
 
-#if defined TEIGHA_API_SETTINGS
-string_map Method::undefined_teigha_types({ { "OdBmPartitionId","OdUInt64" } });
-#endif
 
 Method::Method(
     const Cursor &cursor, 
@@ -66,16 +63,17 @@ bool Method::isAccessible(void) const
     //remove operators from meta data, otherwise it can cause compile errors
     std::string prefix = "operator";    
     bool isOperator = strncmp(m_name.c_str(), prefix.c_str(), prefix.size()) == 0;
+	if (isOperator)
+		return false;
 
     //next condition is optional:
     //parse only methods that don't take arguments
-    bool takesArguments = m_signature.size() > 0;
-
-    // must not be explicitly disabled
-    return !m_metaData.GetFlag(native_property::Disable) && !takesArguments && !isOperator;
-#else
-	return !m_metaData.GetFlag(native_property::Disable);
+    bool takesAguments = m_signature.size() > 0;
+	if (takesAguments)
+		return false;
 #endif
+
+	return !m_metaData.GetFlag(native_property::Disable);
 }
 
 std::string Method::getQualifiedSignature(void) const
@@ -94,17 +92,9 @@ std::string Method::getQualifiedSignature(void) const
 #if defined TEIGHA_API_SETTINGS
 void Method::fixReturnType(Cursor cursor)
 {
-	//check if return type has declaration
-	auto item = undefined_teigha_types.find(m_returnType);
-	if (item != undefined_teigha_types.end())
-	{
-		//replace with analogous type.
-		m_returnType = item->second;
-		return;
-	}
-
-	//check if return type is smart pointer
 	auto returnType = cursor.GetReturnType();
+
+	//check if return type is smart pointer	
 	std::string prefix = "OdSmartPtr";
 	bool isSmartPtr = strncmp(returnType.GetCanonicalType().GetDisplayName().c_str(), prefix.c_str(), prefix.size()) == 0;
 	if (isSmartPtr)

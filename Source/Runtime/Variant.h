@@ -72,6 +72,14 @@ namespace ursine
                 DISABLE_VARIANT_DECL
             );
 
+			template<typename T>
+			Variant(T &&data,
+					bool is_teigha_obj,
+					DISABLE_VARIANT_DECL,
+					DISABLE_ARGUMENT_DECL,
+					DISABLE_CONST_DECL
+			);
+
             // non-const r-value references, excluding other variants and arguments
             template<typename T>
             Variant(T &&data,

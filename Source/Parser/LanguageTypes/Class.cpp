@@ -234,8 +234,8 @@ TemplateData Class::CompileTemplate(const ReflectionParser *context) const
 bool Class::isAccessible(void) const
 {
 #if defined TEIGHA_API_SETTINGS
-    //make all classes accessible
-    return true;
+    //write class meta data if it has methods.
+	return m_methods.size() > 0;
 #else
 	return m_enabled || m_metaData.GetFlag(native_property::Register);
 #endif

@@ -7,6 +7,7 @@
 #pragma once
 
 #include "../VariantContainer.h"
+#include "../TeighaVariantContainer.h"
 #include "../ObjectWrapper.h"
 #include "../ArrayVariantContainer.h"
 
@@ -62,6 +63,25 @@ namespace ursine
         {
 
         }
+
+		///////////////////////////////////////////////////////////////////////
+
+		template<typename T>
+		Variant::Variant(
+			T &&data, bool is_teigha_obj,
+			DISABLE_VARIANT,
+			DISABLE_ARGUMENT,
+			DISABLE_CONST
+		)
+			: m_isConst(false)
+			, m_base(
+			new TeighaVariantContainer< CleanedType<T> >(
+			static_cast<T&&>(data)
+			)
+			)
+		{
+
+		}
 
         ///////////////////////////////////////////////////////////////////////
 
