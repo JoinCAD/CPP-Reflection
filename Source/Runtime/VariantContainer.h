@@ -53,7 +53,7 @@ namespace ursine
 
             void OnSerialize(Json::object &output) const override;
             void OnDeserialize(const Json &input) override;
-        private:
+        protected:
             friend class Variant;
 
             T m_value;
