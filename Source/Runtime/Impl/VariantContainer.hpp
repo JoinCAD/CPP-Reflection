@@ -119,11 +119,6 @@ namespace ursine
         template<typename T>
         void *VariantContainer<T>::GetPtr(void) const
         {
-            //TODO rewrite this cast
-            //this works incorrectly
-            //
-            //
-            
             return const_cast<void*>(
                 reinterpret_cast<const void*>( 
                     std::addressof( m_value )
