@@ -59,18 +59,20 @@ bool Method::isAccessible(void) const
     if (m_parent->GetMetaData( ).GetFlag( native_property::WhiteListMethods ))
         return m_metaData.GetFlag( native_property::Enable );
 
-#if defined TEIGHA_API_SETTINGS
+#ifdef TEIGHA_API_SETTINGS
     //remove operators from meta data, otherwise it can cause compile errors
     std::string prefix = "operator";    
     bool isOperator = strncmp(m_name.c_str(), prefix.c_str(), prefix.size()) == 0;
 	if (isOperator)
 		return false;
 
+#ifndef TEIGHA_API_SETTINGS_INCLUDE_WITH_ARGS
     //next condition is optional:
     //parse only methods that don't take arguments
-    bool takesAguments = m_signature.size() > 0;
-	if (takesAguments)
+    bool takesArguments = m_signature.size() > 0;
+	if (takesArguments)
 		return false;
+#endif
 #endif
 
 	return !m_metaData.GetFlag(native_property::Disable);

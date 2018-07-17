@@ -74,11 +74,11 @@ namespace ursine
 			DISABLE_CONST
 		)
 			: m_isConst(false)
-			, m_base(
-			new TeighaVariantContainer< CleanedType<T> >(
-			static_cast<T&&>(data)
-			)
-			)
+            , m_base( 
+                new TeighaVariantContainer< CleanedType<T> >( 
+                    static_cast<T&&>( data ) 
+                )
+            )
 		{
 
 		}
