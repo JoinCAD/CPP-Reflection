@@ -24,8 +24,9 @@
         std::string ToString(void) const override;                         \
                                                                            \
         VariantBase *Clone(void) const override;                           \
+		bool IsOfType(const std::type_info& typeInfo) const override;      \
                                                                            \
-    private:                                                               \
+    protected:                                                             \
         friend class Variant;                                              \
                                                                            \
         VariantContainer &operator=(const VariantContainer &rhs) = delete; \
@@ -55,7 +56,9 @@ namespace ursine
 
             VariantBase *Clone(void) const override;
 
-        private:
+			bool IsOfType(const std::type_info& typeInfo) const override;
+
+        protected:
             friend class Variant;
 
             VariantContainer &operator=(const VariantContainer &rhs) = delete;

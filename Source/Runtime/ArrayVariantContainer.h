@@ -33,6 +33,7 @@ namespace ursine
             ArrayWrapper GetArray(void) const override;
 
             VariantBase *Clone(void) const override;
+			bool IsOfType(const std::type_info& typeInfo) const override;
 
         private:
             StorageType m_array;

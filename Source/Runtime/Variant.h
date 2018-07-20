@@ -137,6 +137,9 @@ namespace ursine
             template<typename T>
             T &GetValue(void) const;
 
+			template<typename T>
+			bool IsOfType() const;
+
             template<typename T>
             T* GetPointer(void) const;
 

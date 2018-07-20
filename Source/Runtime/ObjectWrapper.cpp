@@ -69,5 +69,10 @@ namespace ursine
         {
             m_object->OnDeserialize( input );
         }
+
+		bool ObjectWrapper::IsOfType(const std::type_info & typeInfo) const
+		{
+			return false;
+		}
     }
 }

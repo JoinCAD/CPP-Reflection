@@ -82,5 +82,11 @@ namespace ursine
         {
             return new ArrayVariantContainer<T, StorageType>( const_cast<Array<T>&>( m_array ) );
         }
+
+		template<typename T, typename StorageType>
+		bool ArrayVariantContainer<T, StorageType>::IsOfType(const std::type_info & typeInfo) const
+		{
+			return false;
+		}
     }
 }

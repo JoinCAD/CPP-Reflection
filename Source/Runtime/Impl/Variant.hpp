@@ -160,6 +160,12 @@ namespace ursine
             return *static_cast<T*>( getPtr( ) );
         }
 
+		template<typename T>
+		bool Variant::IsOfType() const
+		{
+			return m_base->IsOfType(typeid(T));
+		}
+
         ///////////////////////////////////////////////////////////////////////
 
         template<typename T>

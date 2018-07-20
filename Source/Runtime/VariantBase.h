@@ -39,6 +39,7 @@ namespace ursine
 
             virtual void OnSerialize(Json::object &output) const { }
             virtual void OnDeserialize(const Json &input) { }
+			virtual bool IsOfType(const std::type_info& typeInfo) const = 0;
         };
     }
 }
