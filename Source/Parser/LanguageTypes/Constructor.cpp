@@ -52,14 +52,14 @@ TemplateData Constructor::CompileTemplate(
 
 bool Constructor::isAccessible(void) const
 {
+	if (m_accessModifier != CX_CXXPublic)
+		return false;
+
 #if defined TEIGHA_API_SETTINGS
 	//we don't need constructors for now. 
 	//disable constructors meta data generating, because they cause runtime errors for abstract types
 	return false;
 #endif
-
-	if (m_accessModifier != CX_CXXPublic)
-		return false;
 
 	// if the parent wants white listed method, then we must have 
 	// the enable flag

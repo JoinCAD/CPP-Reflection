@@ -235,7 +235,8 @@ bool Class::isAccessible(void) const
 {
 #if defined TEIGHA_API_SETTINGS
     //write class meta data if it has methods.
-	return m_methods.size() > 0;
+	bool isTemplate = m_rootCursor.GetType().GetDeclaration().GetKind() == CXCursorKind::CXCursor_ClassTemplate;
+	return m_methods.size() > 0 && !isTemplate;
 #else
 	return m_enabled || m_metaData.GetFlag(native_property::Register);
 #endif

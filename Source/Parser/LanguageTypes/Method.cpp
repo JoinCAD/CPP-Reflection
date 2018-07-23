@@ -60,6 +60,9 @@ bool Method::isAccessible(void) const
         return m_metaData.GetFlag( native_property::Enable );
 
 #ifdef TEIGHA_API_SETTINGS
+	if (m_rootCursor.GetKind() == CXCursorKind::CXCursor_NotImplemented)
+		return false;
+
     //remove operators from meta data, otherwise it can cause compile errors
     std::string prefix = "operator";    
     bool isOperator = strncmp(m_name.c_str(), prefix.c_str(), prefix.size()) == 0;

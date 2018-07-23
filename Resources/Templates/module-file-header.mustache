@@ -7,19 +7,39 @@
 
 #pragma once
 
-//Teigha common headers are required
 #if defined TEIGHA_API_SETTINGS
 
 #include <OdaCommon.h>
-#include <BimCommon.h>
-
 #include <OdTimeStamp.h>
-#include <Database/BmSpecialId.h>
-#include <Base/BmObjectId.h>
-#include <Base/BmCmColor.h>
-#include <Database/BmUnitsFormatter.h>
+
+#include <Br/BrComplex.h>
+#include <Br/BrBrep.h>
+#include <Br/BrLoop.h>
+#include <Br/BrEdge.h>
+#include <Br/BrFace.h>
+#include <Br/BrVertex.h>
+
+#include <Ge/Ge.h>
+#include <Ge/GeCurve3d.h>
+#include <Ge/GeKnotVector.h>
+#include <Ge/GeSurface.h>
+
+#include <Gi/Gi.h>
+#include <Gi/GiGeometry.h>
+#include <Gi/GiDeviation.h>
+#include <Gi/GiConveyorNode.h>
+#include <Gi/GiDgLinetype.h>
+
 #include <Gs/Gs.h>
 
+
+#if defined TEIGHA_BIM_API_SETTINGS
+#include <BimCommon.h>
+#include <Base/BmObjectId.h>
+#include <Base/BmCmColor.h>
+#include <Database/BmSpecialId.h>
+#include <Database/BmUnitsFormatter.h>
+#endif
 
 #endif
 
