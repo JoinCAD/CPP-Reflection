@@ -67,6 +67,11 @@ int main(int argc, char *argv[])
             po::value<std::string>( )->required( ), 
             "Output directory for generated C++ module file, header/source files." 
         )
+		(
+			SWITCH_OPTION( IgnoreFile ),
+			po::value<std::string>(),
+			"Ignore file (txt) with listed headers to ignore."
+		)
         ( 
             SWITCH_OPTION( TemplateDirectory ), 
             po::value<std::string>( )->default_value( "Templates/" ), 
@@ -166,11 +171,28 @@ void parse(const po::variables_map &cmdLine)
         "-D__REFLECTION_PARSER__"
     } };
 
-    if (cmdLine.count( kSwitchPrecompiledHeader ))
+    if (cmdLine.count( kSwitchIgnoreFile ))
     {
-        options.precompiledHeader = 
-            cmdLine.at( kSwitchPrecompiledHeader ).as<std::string>( );
+        options.ignoreFile =
+            cmdLine.at( kSwitchIgnoreFile ).as<std::string>( );
+
+		struct stat buffer;
+		if (stat(options.ignoreFile.data(), &buffer) == 0) //file exist
+		{
+			std::string line;
+			std::ifstream out(options.ignoreFile);
+			while (std::getline(out, line)) {
+				options.ignoreList.push_back(line);
+			}
+			out.close();
+		}
     }
+
+	if (cmdLine.count(kSwitchPrecompiledHeader))
+	{
+		options.precompiledHeader =
+			cmdLine.at(kSwitchPrecompiledHeader).as<std::string>();
+	}
     
     if (cmdLine.count( kSwitchCompilerIncludes ))
     {

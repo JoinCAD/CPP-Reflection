@@ -20,6 +20,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 
 #include <fstream>
+#include <vector>
 
 #define RECURSE_NAMESPACES(kind, cursor, method, ns) \
     if (kind == CXCursor_Namespace)                  \
@@ -179,6 +180,12 @@ void ReflectionParser::GenerateFiles(void)
         auto outputFile = outputFileDirectory / relativeDir;
         auto outputFileHeader = change_extension( outputFile, "Generated.h" );
         auto outputFileSource = change_extension( outputFile, "Generated.cpp" );
+
+		if (!exists(outputFileHeader) ||
+			!exists(outputFileSource))
+		{
+			continue;
+		}
 
         // module file name
         file.second.name = boost::regex_replace(
@@ -354,6 +361,14 @@ void ReflectionParser::buildClasses(
     for (auto &child : cursor.GetChildren( ))
     {
         auto kind = child.GetKind( );
+
+#if defined TEIGHA_API_SETTINGS
+		auto fileName = child.GetSourceFileName();
+		if (!fileName.empty() && std::find(m_options.ignoreList.begin(), m_options.ignoreList.end(), fileName) != m_options.ignoreList.end())
+		{
+			continue;
+		}
+#endif
 
         // actual definition and a class or struct
         if (child.IsDefinition( ) && 

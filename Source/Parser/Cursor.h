@@ -27,6 +27,7 @@ public:
     std::string GetUSR(void) const;
 
     std::string GetSourceFile(void) const;
+	std::string GetSourceFileName(void) const;
 
     bool IsDefinition(void) const;
     bool IsConst(void) const;

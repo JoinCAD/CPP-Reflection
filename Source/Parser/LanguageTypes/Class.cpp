@@ -93,9 +93,9 @@ Class::Class(const Cursor &cursor, const Namespace &currentNamespace)
             }
             else 
             { 
-                m_methods.emplace_back( 
-                    new Method( child, currentNamespace, this ) 
-                );
+				auto method = new Method(child, currentNamespace, this);
+				if (method->ShouldCompile())
+					m_methods.emplace_back(method);
             }
             break;
 #if defined TEIGHA_API_SETTINGS
@@ -235,8 +235,7 @@ bool Class::isAccessible(void) const
 {
 #if defined TEIGHA_API_SETTINGS
     //write class meta data if it has methods.
-	bool isTemplate = m_rootCursor.GetType().GetDeclaration().GetKind() == CXCursorKind::CXCursor_ClassTemplate;
-	return m_methods.size() > 0 && !isTemplate;
+	return m_methods.size() > 0;
 #else
 	return m_enabled || m_metaData.GetFlag(native_property::Register);
 #endif

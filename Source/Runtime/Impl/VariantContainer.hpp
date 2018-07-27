@@ -148,7 +148,6 @@ namespace ursine
         }
 
 		template<typename T>
-		template<typename T>
 		bool VariantContainer<T>::IsOfType(const std::type_info& typeInfo) const
 		{
 			return typeid(T) == typeInfo;
