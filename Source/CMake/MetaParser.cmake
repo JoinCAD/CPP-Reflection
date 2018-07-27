@@ -76,6 +76,7 @@ function(meta_parser_build)
         MODULE_SOURCE_FILE
         GENERATED_DIR
         PCH_NAME
+		IGNORE_FILE
         PARSER_EXECUTABLE
     )
 
@@ -149,6 +150,7 @@ function(meta_parser_build)
         --module-header "${BUILD_META_SOURCE_ROOT}/${BUILD_META_MODULE_HEADER}"
         --out-source "${BUILD_META_MODULE_SOURCE_FILE}"
         --out-dir "${BUILD_META_GENERATED_DIR}"
+		--ignore "${BUILD_META_SOURCE_ROOT}/${BUILD_META_IGNORE_FILE}"
         ${PCH_SWITCH}
         --includes "${INCLUDES_FILE}"
         ${DEFINES_SWITCH}
