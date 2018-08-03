@@ -15,6 +15,7 @@ struct ReflectionOptions
 
     std::string sourceRoot;
     std::string inputSourceFile;
+	std::string ignoreFile;
     std::string moduleHeaderFile;
 
     std::string outputModuleSource;
@@ -25,4 +26,5 @@ struct ReflectionOptions
     std::string templateDirectory;
 
     std::vector<std::string> arguments;
+	std::vector<std::string> ignoreList;
 };

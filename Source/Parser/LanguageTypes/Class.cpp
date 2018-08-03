@@ -93,11 +93,17 @@ Class::Class(const Cursor &cursor, const Namespace &currentNamespace)
             }
             else 
             { 
-                m_methods.emplace_back( 
-                    new Method( child, currentNamespace, this ) 
-                );
+				auto method = new Method(child, currentNamespace, this);
+				if (method->ShouldCompile())
+					m_methods.emplace_back(method);
             }
             break;
+#if defined TEIGHA_API_SETTINGS
+		//typeDefs defined in class
+		case CXCursor_TypedefDecl:
+			m_typeDefs.emplace_back(new std::string(child.GetDisplayName()));
+			break;		
+#endif
         default:
             break;
         }
@@ -227,5 +233,10 @@ TemplateData Class::CompileTemplate(const ReflectionParser *context) const
 
 bool Class::isAccessible(void) const
 {
-    return m_enabled || m_metaData.GetFlag( native_property::Register );
+#if defined TEIGHA_API_SETTINGS
+    //write class meta data if it has methods.
+	return m_methods.size() > 0;
+#else
+	return m_enabled || m_metaData.GetFlag(native_property::Register);
+#endif
 }

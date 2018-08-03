@@ -80,6 +80,11 @@ namespace ursine
             return new VariantContainer<void>( );
         }
 
+		bool VariantContainer<void>::IsOfType(const std::type_info& typeInfo) const
+		{
+			return typeid(void) == typeInfo;
+		}
+
         #pragma endregion
 
         ///////////////////////////////////////////////////////////////////////
@@ -89,6 +94,12 @@ namespace ursine
         /////////////////////////////////////////////////////////////////////// 
 
         #pragma region int
+
+
+		bool VariantContainer<int>::IsOfType(const std::type_info& typeInfo) const
+		{
+			return typeid(int) == typeInfo;
+		}
 
         VariantContainer<int>::VariantContainer(const int &value)
             : m_value( value ) { }
@@ -168,6 +179,11 @@ namespace ursine
 
         #pragma region unsigned unsigned
 
+		bool VariantContainer<unsigned>::IsOfType(const std::type_info& typeInfo) const
+		{
+			return typeid(unsigned) == typeInfo;
+		}
+
         VariantContainer<unsigned>::VariantContainer(const unsigned &value)
             : m_value( value ) { }
 
@@ -245,6 +261,11 @@ namespace ursine
         /////////////////////////////////////////////////////////////////////// 
 
         #pragma region bool
+
+		bool VariantContainer<bool>::IsOfType(const std::type_info& typeInfo) const
+		{
+			return typeid(bool) == typeInfo;
+		}
 
         VariantContainer<bool>::VariantContainer(const bool &value)
             : m_value( value ) { }
@@ -324,6 +345,11 @@ namespace ursine
 
         #pragma region float
 
+		bool VariantContainer<float>::IsOfType(const std::type_info& typeInfo) const
+		{
+			return typeid(float) == typeInfo;
+		}
+
         VariantContainer<float>::VariantContainer(const float &value)
             : m_value( value ) { }
 
@@ -402,6 +428,11 @@ namespace ursine
 
         #pragma region double
 
+		bool VariantContainer<double>::IsOfType(const std::type_info& typeInfo) const
+		{
+			return typeid(double) == typeInfo;
+		}
+
         VariantContainer<double>::VariantContainer(const double &value)
             : m_value( value ) { }
 
@@ -479,6 +510,11 @@ namespace ursine
         /////////////////////////////////////////////////////////////////////// 
 
         #pragma region string
+
+		bool VariantContainer<std::string>::IsOfType(const std::type_info& typeInfo) const
+		{
+			return typeid(std::string) == typeInfo;
+		}
 
         VariantContainer<std::string>::VariantContainer(
             const std::string &value

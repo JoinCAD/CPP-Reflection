@@ -45,7 +45,6 @@ protected:
 
     CX_CXXAccessSpecifier m_accessModifier;
 
-private:
     // cursor that represents the root of this language type
     Cursor m_rootCursor;
 };

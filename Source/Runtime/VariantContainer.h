@@ -53,7 +53,10 @@ namespace ursine
 
             void OnSerialize(Json::object &output) const override;
             void OnDeserialize(const Json &input) override;
-        private:
+
+            bool IsOfType(const std::type_info& typeInfo) const override;
+
+        protected:
             friend class Variant;
 
             T m_value;

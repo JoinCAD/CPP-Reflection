@@ -44,17 +44,17 @@ namespace ursine
             template<typename X>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)( );
+                ((*instance).*m_method)( );
             }
 
             template<typename X, typename A1>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( )
                 );
             }
@@ -62,9 +62,9 @@ namespace ursine
             template<typename X, typename A1, typename A2>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( ),
                     arguments[ 1 ].GetValue<A2>( )
                 );
@@ -73,9 +73,9 @@ namespace ursine
             template<typename X, typename A1, typename A2, typename A3>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( ),
                     arguments[ 1 ].GetValue<A2>( ),
                     arguments[ 2 ].GetValue<A3>( )
@@ -85,9 +85,9 @@ namespace ursine
             template<typename X, typename A1, typename A2, typename A3, typename A4>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( ),
                     arguments[ 1 ].GetValue<A2>( ),
                     arguments[ 2 ].GetValue<A3>( ),
@@ -98,9 +98,9 @@ namespace ursine
             template<typename X, typename A1, typename A2, typename A3, typename A4, typename A5>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( ),
                     arguments[ 1 ].GetValue<A2>( ),
                     arguments[ 2 ].GetValue<A3>( ),
@@ -112,9 +112,9 @@ namespace ursine
             template<typename X, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( ),
                     arguments[ 1 ].GetValue<A2>( ),
                     arguments[ 2 ].GetValue<A3>( ),
@@ -127,9 +127,9 @@ namespace ursine
             template<typename X, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( ),
                     arguments[ 1 ].GetValue<A2>( ),
                     arguments[ 2 ].GetValue<A3>( ),
@@ -143,9 +143,9 @@ namespace ursine
             template<typename X, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7, typename A8>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( ),
                     arguments[ 1 ].GetValue<A2>( ),
                     arguments[ 2 ].GetValue<A3>( ),
@@ -160,9 +160,9 @@ namespace ursine
             template<typename X, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7, typename A8, typename A9>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( ),
                     arguments[ 1 ].GetValue<A2>( ),
                     arguments[ 2 ].GetValue<A3>( ),
@@ -178,9 +178,9 @@ namespace ursine
             template<typename X, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7, typename A8, typename A9, typename A10>
             void invoke(Variant &obj, const ArgumentList &arguments)
             {
-                auto &instance = obj.GetValue<ClassType>( );
+                auto instance = obj.GetPointer<ClassType>( );
 
-                (instance.*m_method)(
+                ((*instance).*m_method)(
                     arguments[ 0 ].GetValue<A1>( ),
                     arguments[ 1 ].GetValue<A2>( ),
                     arguments[ 2 ].GetValue<A3>( ),

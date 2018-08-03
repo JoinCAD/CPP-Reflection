@@ -196,7 +196,7 @@ void meta_generated::DefineModuleFile{{targetName}}{{moduleFileName}}(m::Reflect
             // Methods
             {{#method}}
             type.AddMethod( "{{name}}",
-                static_cast<{{& qualifiedSignature}}>( &{{parentQualifiedName}}::{{name}} ),
+                ({{& qualifiedSignature}}) &{{parentQualifiedName}}::{{name}},
                 {
                     {{> metaDataInitializerList}}
                 }
@@ -205,7 +205,7 @@ void meta_generated::DefineModuleFile{{targetName}}{{moduleFileName}}(m::Reflect
             // Static Methods
             {{#staticMethod}}
             type.AddStaticMethod<{{parentQualifiedName}}>( "{{name}}",
-                static_cast<{{& qualifiedSignature}}>( {{parentQualifiedName}}::{{& qualifiedName}} ),
+                ({{& qualifiedSignature}}) {{parentQualifiedName}}::{{& qualifiedName}},
                 {
                     {{> metaDataInitializerList}}
                 }

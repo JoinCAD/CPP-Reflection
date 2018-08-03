@@ -31,8 +31,9 @@ Field::Field(
     m_veryExplicitGetter = m_metaData.GetNativeString( native_property::VeryExplicitGetter );
     m_hasExplicitGetter = !m_explicitGetter.empty( ) || !m_veryExplicitGetter.empty( );
 
-    m_explicitSetter = m_metaData.GetNativeString( native_property::ExplicitSetter );
-    m_hasExplicitSetter = !m_explicitSetter.empty( );
+	m_explicitSetter = m_metaData.GetNativeString(native_property::ExplicitSetter);
+	m_hasExplicitSetter = !m_explicitSetter.empty();
+
 }
 
 bool Field::ShouldCompile(void) const
@@ -89,6 +90,10 @@ TemplateData Field::CompileTemplate(const ReflectionParser *context) const
 
 bool Field::isAccessible(void) const
 {
+#ifdef TEIGHA_API_SETTINGS
+	return false;
+#endif
+
     return (m_hasExplicitGetter || m_hasExplicitSetter) ||
             (
                 m_accessModifier == CX_CXXPublic && 

@@ -23,6 +23,7 @@ DEFINE_SWITCH_FULL( Help,                      "help",                "h" );
 DEFINE_SWITCH_FULL( TargetName,                "target-name",         "t" );
 DEFINE_SWITCH_FULL( SourceRoot,                "source-root",         "r" );
 DEFINE_SWITCH_FULL( InputSource,               "in-source",           "i" );
+DEFINE_SWITCH_FULL( IgnoreFile,			       "ignore",		      "g" );
 DEFINE_SWITCH_FULL( ModuleHeaderFile,          "module-header",       "m" );
 DEFINE_SWITCH_FULL( OutputModuleSource,        "out-source",          "s" );
 DEFINE_SWITCH_FULL( OutputModuleFileDirectory, "out-dir",             "c" );

@@ -77,9 +77,28 @@ std::string Cursor::GetSourceFile(void) const
 
     std::string filename;
 
+	if (file == nullptr)
+		return filename;
+
     utils::ToString( clang_getFileName( file ), filename );
 
     return filename;
+}
+
+std::string Cursor::GetSourceFileName(void) const
+{
+	auto filePath = GetSourceFile();
+	if (filePath.empty())
+		return filePath;
+
+	char sep = '/';
+
+	size_t i = filePath.rfind(sep, filePath.length());
+	if (i != std::string::npos) {
+		return(filePath.substr(i + 1, filePath.length() - i));
+	}
+
+	return "";
 }
 
 bool Cursor::IsDefinition(void) const

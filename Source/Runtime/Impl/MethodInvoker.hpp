@@ -38,9 +38,9 @@ namespace ursine
         template<typename _>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)( );
+            return ((*instance).*m_method)( );
         }
 
         ///////////////////////////////////////////////////////////////////////
@@ -49,9 +49,9 @@ namespace ursine
         template<typename _, typename A1>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance)instance.*m_method)(
                 arguments[ 0 ].GetValue<A1>( )
             );
         }
@@ -62,9 +62,9 @@ namespace ursine
         template<typename _, typename A1, typename A2>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance).*m_method)(
                 arguments[ 0 ].GetValue<A1>( ),
                 arguments[ 1 ].GetValue<A2>( )
             );
@@ -76,9 +76,9 @@ namespace ursine
         template<typename _, typename A1, typename A2, typename A3>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance).*m_method)(
                 arguments[ 0 ].GetValue<A1>( ),
                 arguments[ 1 ].GetValue<A2>( ),
                 arguments[ 2 ].GetValue<A3>( )
@@ -91,9 +91,9 @@ namespace ursine
         template<typename _, typename A1, typename A2, typename A3, typename A4>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance).*m_method)(
                 arguments[ 0 ].GetValue<A1>( ),
                 arguments[ 1 ].GetValue<A2>( ),
                 arguments[ 2 ].GetValue<A3>( ),
@@ -107,9 +107,9 @@ namespace ursine
         template<typename _, typename A1, typename A2, typename A3, typename A4, typename A5>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance).*m_method)(
                 arguments[ 0 ].GetValue<A1>( ),
                 arguments[ 1 ].GetValue<A2>( ),
                 arguments[ 2 ].GetValue<A3>( ),
@@ -124,9 +124,9 @@ namespace ursine
         template<typename _, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance).*m_method)(
                 arguments[ 0 ].GetValue<A1>( ),
                 arguments[ 1 ].GetValue<A2>( ),
                 arguments[ 2 ].GetValue<A3>( ),
@@ -142,9 +142,9 @@ namespace ursine
         template<typename _, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance).*m_method)(
                 arguments[ 0 ].GetValue<A1>( ),
                 arguments[ 1 ].GetValue<A2>( ),
                 arguments[ 2 ].GetValue<A3>( ),
@@ -161,9 +161,9 @@ namespace ursine
         template<typename _, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7, typename A8>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance).*m_method)(
                 arguments[ 0 ].GetValue<A1>( ),
                 arguments[ 1 ].GetValue<A2>( ),
                 arguments[ 2 ].GetValue<A3>( ),
@@ -181,9 +181,9 @@ namespace ursine
         template<typename _, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7, typename A8, typename A9>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance).*m_method)(
                 arguments[ 0 ].GetValue<A1>( ),
                 arguments[ 1 ].GetValue<A2>( ),
                 arguments[ 2 ].GetValue<A3>( ),
@@ -202,9 +202,9 @@ namespace ursine
         template<typename _, typename A1, typename A2, typename A3, typename A4, typename A5, typename A6, typename A7, typename A8, typename A9, typename A10>
         Variant MethodInvoker<ClassType, ReturnType, ArgTypes...>::invoke(Variant &obj, const ArgumentList &arguments)
         {
-            auto &instance = obj.GetValue<ClassType>( );
+            auto instance = obj.GetPointer<ClassType>( );
 
-            return (instance.*m_method)(
+            return ((*instance).*m_method)(
                 arguments[ 0 ].GetValue<A1>( ),
                 arguments[ 1 ].GetValue<A2>( ),
                 arguments[ 2 ].GetValue<A3>( ),

@@ -16,6 +16,10 @@ class Method
     , public Invokable
 {
 public:
+#ifdef TEIGHA_API_SETTINGS
+	static std::vector<std::string> returnTypesToIgnore;
+#endif
+
     Method(
         const Cursor &cursor, 
         const Namespace &currentNamespace, 
@@ -40,4 +44,8 @@ private:
     bool isAccessible(void) const;
 
     std::string getQualifiedSignature(void) const;
+
+#if defined TEIGHA_API_SETTINGS
+	void fixReturnType(Cursor);
+#endif
 };

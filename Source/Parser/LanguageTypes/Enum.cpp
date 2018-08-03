@@ -86,5 +86,11 @@ TemplateData Enum::CompileTemplate(const ReflectionParser *context) const
 
 bool Enum::isAccessible(void) const
 {
-    return m_metaData.GetFlag( native_property::Enable );
+#if defined TEIGHA_API_SETTINGS
+    //Some enums meta data, fail to compile, due to missing namespace
+    //disable it as we don't need it for now.
+    return false;
+#endif
+
+	return m_metaData.GetFlag(native_property::Enable);
 }

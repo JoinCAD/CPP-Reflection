@@ -72,6 +72,14 @@ namespace ursine
                 DISABLE_VARIANT_DECL
             );
 
+			template<typename T>
+			Variant(T &&data,
+					bool is_teigha_obj,
+					DISABLE_VARIANT_DECL,
+					DISABLE_ARGUMENT_DECL,
+					DISABLE_CONST_DECL
+			);
+
             // non-const r-value references, excluding other variants and arguments
             template<typename T>
             Variant(T &&data,
@@ -128,6 +136,12 @@ namespace ursine
 
             template<typename T>
             T &GetValue(void) const;
+
+			template<typename T>
+			bool IsOfType() const;
+
+            template<typename T>
+            T* GetPointer(void) const;
 
             bool IsValid(void) const;
             bool IsConst(void) const;

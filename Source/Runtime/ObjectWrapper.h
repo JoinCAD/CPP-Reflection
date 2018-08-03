@@ -34,6 +34,8 @@ namespace ursine
 
             void OnSerialize(Json::object &output) const override;
             void OnDeserialize(const Json &input) override;
+
+			bool IsOfType(const std::type_info& typeInfo) const override;
         private:
             Object *m_object;
         };
