@@ -12,6 +12,11 @@
 #include <boost/format.hpp>
 #include <boost/algorithm/string/join.hpp>
 
+#include <vector>
+
+#ifdef TEIGHA_API_SETTINGS
+std::vector<std::string> Method::returnTypesToIgnore = {"OdGiGeometry", "OdGiSubEntityTraits", "OdGiVariant::EnumType"};
+#endif
 
 Method::Method(
     const Cursor &cursor, 
@@ -67,6 +72,9 @@ bool Method::isAccessible(void) const
     std::string prefix = "operator";    
     bool isOperator = strncmp(m_name.c_str(), prefix.c_str(), prefix.size()) == 0;
 	if (isOperator)
+		return false;
+
+	if (std::find(Method::returnTypesToIgnore.begin(), Method::returnTypesToIgnore.end(), m_returnType) != Method::returnTypesToIgnore.end())
 		return false;
 
 #ifndef TEIGHA_API_SETTINGS_INCLUDE_WITH_ARGS

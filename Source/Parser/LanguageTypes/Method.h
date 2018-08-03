@@ -16,6 +16,10 @@ class Method
     , public Invokable
 {
 public:
+#ifdef TEIGHA_API_SETTINGS
+	static std::vector<std::string> returnTypesToIgnore;
+#endif
+
     Method(
         const Cursor &cursor, 
         const Namespace &currentNamespace, 
